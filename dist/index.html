@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Sendai, Whatever the Weather</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Interactive map of Sendai City, Miyagi Prefecture, Japan. Find weather dependent recommendations in Sendai City.">
+        <meta name="author" content="Miles Whitman">
+
+        <link rel="stylesheet" href="css/css/styles.css">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="container">
+            <a id="menu" class="menu-toggle">
+                <span class="fa fa-bars"></span>
+            </a>
+          <div id="drawer" class="options-box">
+            <h1 class="light-text">Sendai, Whatever the Weather</h1>
+            <ul class="location-list" data-bind="foreach: filteredLocations">
+                <li><button class="blue-button location-item" data-bind="text: title, click: $parent.selectLocation"></button></li>
+            </ul>
+            <div>
+                <span class="text">Filter locations:</span>
+                <span class="text" data-bind="text: 'Category: ' + filter()"></span>
+                <select id="category-filter" data-bind="options: filters, value: filter"></select>
+            </div>
+            <div>
+              <input id="show-markers" class="blue-button toggle-listings" type="button" value="Show Markers">
+              <input id="hide-markers" class="blue-button toggle-listings" type="button" value="Hide Markers">
+            </div>
+            <hr>
+            <div>
+              <input id="zoom-to-area-text" class="zoom-to-area-text" type="text" placeholder="Enter your favorite area">
+              <input id="zoom-to-area" class="blue-button zoom-to-area" type="button" value="Zoom">
+            </div>
+            <span id="area"></span>
+            <hr>
+            <div>
+              <span class="text"> Within </span>
+              <select id="max-duration">
+                <option value="10">10 min</option>
+                <option value="15">15 min</option>
+                <option value="30">30 min</option>
+                <option value="60">1 hour</option>
+              </select>
+              <select id="mode">
+                <option value="DRIVING">drive</option>
+                <option value="WALKING">walk</option>
+                <option value="BICYCLING">bike</option>
+                <option value="TRANSIT">transit ride</option>
+              </select>
+              <span class="text">of</span>
+              <input id="search-within-time-text" class="search" type="text" placeholder="Ex: Sendai Station, Sendai, Miyagi -- or -- 仙台駅仙台市宮城県">
+              <input id="search-within-time" class="blue-button" type="button" value="Go">
+            </div>
+            <hr>
+            <div>
+              <span class="text">Search for nearby places</span>
+              <input id="places-search" class="search" type="text" placeholder="Ex: Preschools in Sendai -- or -- 仙台市の保育園">
+              <input id="go-places" class="blue-button" type="button" value="Go">
+            </div>
+          </div>
+          <div id="map" class="map"></div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/lib/knockout-3.4.2.js"></script>
+        <script type="text/javascript" src="neighborhood-map.min.js"></script>
+        <script async defer
+        src=
+        "https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key=AIzaSyAI3HBa3DR9uvBTA4SW3wFO4G3TuKaZMXE&v=3&callback=initMap">
+        </script>
+        <script>
+            menu.addEventListener('click', function(e) {
+              drawer.classList.toggle('open');
+              e.stopPropagation();
+            });
+        </script>
+    </body>
+</html>
