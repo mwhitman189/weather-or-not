@@ -13,7 +13,7 @@
     "grunt-contrib-uglify": "^4.0.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-remove-logging": "^0.2.0",
-    "node-sass": "^4.9.4",
+    "node-sass": "^4.13.1",
     "watch": "^1.0.2"
   },
   "devDependencies": {},
